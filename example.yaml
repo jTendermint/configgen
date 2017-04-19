@@ -1,0 +1,38 @@
+# Tendermint Config Generator Script
+
+# Name of the Chain
+chainid: testchain12
+
+
+
+# Default values for all nodes, can be individually overriden
+defaultvalues: &defval
+  proxy_app: tcp://127.0.0.1:46658
+  node_laddr: tcp://0.0.0.0:46656
+  fast_sync : true
+  db_backend : leveldb
+  log_level : notice
+  rpc_laddr: tcp://0.0.0.0:46657
+
+  
+  
+# list of nodes
+nodes:
+ - &node1 
+   name: node1       #optional
+   extip: 127.0.0.1  #required
+   extport: 46656    #required
+   validator: true   #required
+   log_level: debug  #individual override of default value
+ - &node2
+   name: node2
+   extip: 127.0.0.2
+   extport: 46656
+   validator: true
+   seeds: [*node1]   #optional
+ - &node3
+   name: node3
+   extip: 192.168.0.2
+   extport: 46656
+   validator: false
+   seeds: [*node1,*node2]
