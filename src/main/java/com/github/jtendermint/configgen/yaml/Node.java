@@ -21,7 +21,6 @@ public class Node extends DefaultValues {
     public byte[] address;
 
     public Node() {
-        System.out.println("keygen start");
         KeyPair p = null;
         try {
             p = Crypto.generateKeys();
@@ -39,7 +38,6 @@ public class Node extends DefaultValues {
         } catch (CryptoException e) {
             e.printStackTrace();
         }
-        System.out.println("keygen done");
     }
 
     public void update(DefaultValues def) {

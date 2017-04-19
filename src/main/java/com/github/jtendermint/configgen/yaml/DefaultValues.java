@@ -3,7 +3,7 @@ package com.github.jtendermint.configgen.yaml;
 public class DefaultValues {
     public String proxy_app;// = "tcp://127.0.0.1:46658";
     public String node_laddr;// = "tcp://0.0.0.0:46656";
-    public String fast_sync;// = "true";
+    public Boolean fast_sync;// = "true";
     public String db_backend;// = "leveldb";
     public String log_level;// = "notice";
     public String rpc_laddr;// = "tcp://0.0.0.0:46657";
@@ -30,11 +30,11 @@ public class DefaultValues {
         this.node_laddr = node_laddr;
     }
 
-    public String getFast_sync() {
+    public boolean getFast_sync() {
         return fast_sync;
     }
 
-    public void setFast_sync(String fast_sync) {
+    public void setFast_sync(boolean fast_sync) {
         this.fast_sync = fast_sync;
     }
 

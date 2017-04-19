@@ -19,7 +19,7 @@ public class ConfigToml {
     public String moniker = "anonymous";
     public String node_laddr = "tcp://0.0.0.0:46656";
 
-    public String fast_sync = "true";
+    public Boolean fast_sync = true;
     public String db_backend = "leveldb";
     public String log_level = "notice";
     public String rpc_laddr = "tcp://0.0.0.0:46657";
