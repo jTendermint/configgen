@@ -47,12 +47,11 @@ public class ConfigToml {
             toSeed.append(seedNode.extport);
             toSeed.append(", ");
         });
+        
         int lastIndexComma = toSeed.lastIndexOf(", ");
         if (lastIndexComma != -1) {
             seeds = toSeed.substring(0, lastIndexComma);
         }
-
-        System.out.println("SEEDEDDS: " + seeds);
     }
 
 }

@@ -15,17 +15,14 @@ public class StartupDeploy {
     public static void main(String[] args) {
 
         String yamlFilePath = "example.yaml";
-        if (args.length == 1) {
+        String outpath = "configs/";
+        if (args.length == 2) {
             yamlFilePath = args[0];
+            outpath = args[1];
         }
 
+        System.out.println("Loading YAML from: " + yamlFilePath);
         Config cfg = Config.loadFile(yamlFilePath);
-
-        System.out.println(cfg.getDefaultvalues());
-
-        cfg.getNodes().forEach(node -> {
-            System.out.println(node);
-        });
 
         final Genesis genesis = setupGenesis(cfg);
 
@@ -34,7 +31,7 @@ public class StartupDeploy {
             PrivValidator privval = setupPrivValidator(nodex);
             ConfigToml toml = setupConfigToml(nodex);
             try {
-                Writer.write("configs/", i, genesis, privval, toml);
+                Writer.write(outpath, i, genesis, privval, toml);
             } catch (Exception e) {
                 e.printStackTrace();
             }

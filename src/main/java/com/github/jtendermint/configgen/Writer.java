@@ -27,6 +27,8 @@ public class Writer {
             folder.mkdirs();
         }
 
+        System.out.println("Writing to basedir: " + folder.getAbsolutePath());
+
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
         try (FileWriter w = new FileWriter(new File(folder, GENESIS))) {
@@ -44,8 +46,6 @@ public class Writer {
     private static void writeTOML(File parent, ConfigToml toml) throws IOException, IllegalArgumentException, IllegalAccessException {
 
         File outfile = new File(parent, CONFIG);
-
-        System.out.println(outfile.getAbsolutePath());
         FileWriter writer = new FileWriter(outfile);
 
         writer.append("# This is a TOML config file.\n# For more information, see https://github.com/toml-lang/toml\n");
