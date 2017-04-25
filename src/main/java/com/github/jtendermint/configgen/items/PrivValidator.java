@@ -48,7 +48,7 @@ public class PrivValidator {
 
         privKey = new ArrayList<>();
         privKey.add(1);
-        privKey.add(privkey);
+        privKey.add(privkey + pubkey);
 
         pubKey = new ArrayList<>();
         pubKey.add(1);

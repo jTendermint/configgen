@@ -2,11 +2,19 @@ package com.github.jtendermint.configgen.items;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Genesis {
 
+    @SerializedName("app_hash")
     private String appHash;
+    
+    @SerializedName("chain_id")
     private String chainId;
+    
+    @SerializedName("genesis_time")
     private String genesisTime;
+    
     private List<Validator> validators = null;
 
     public String getAppHash() {

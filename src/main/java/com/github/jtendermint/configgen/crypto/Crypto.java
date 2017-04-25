@@ -21,6 +21,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 
 import org.bouncycastle.asn1.x9.X9ECParameters;
 import org.bouncycastle.crypto.ec.CustomNamedCurves;
+import org.bouncycastle.jcajce.provider.asymmetric.ec.BCECPrivateKey;
 import org.bouncycastle.jce.ECPointUtil;
 import org.bouncycastle.jce.interfaces.ECPrivateKey;
 import org.bouncycastle.jce.interfaces.ECPublicKey;
@@ -28,6 +29,7 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import org.bouncycastle.jce.spec.ECNamedCurveSpec;
 import org.bouncycastle.jce.spec.ECParameterSpec;
 import org.bouncycastle.jce.spec.ECPrivateKeySpec;
+import org.bouncycastle.util.Arrays;
 
 public class Crypto {
 
@@ -77,13 +79,14 @@ public class Crypto {
 
     public static byte[] compressedKey(PublicKey key) throws CryptoException {
         if (key instanceof ECPublicKey) {
-            return ((ECPublicKey) key).getQ().getEncoded(true);
+            byte[] encoded = ((ECPublicKey) key).getQ().getEncoded(true);
+            return Arrays.copyOfRange(encoded, 1, 33);
         }
         throw new CryptoException(new IllegalArgumentException("Can only compress ECPublicKey"));
     }
 
     public static byte[] compressedKey(PrivateKey privkey) throws CryptoException {
-        if (privkey instanceof ECPrivateKey) {
+      if (privkey instanceof ECPrivateKey) {
             return ((ECPrivateKey) privkey).getD().toByteArray();
         }
         throw new CryptoException(new IllegalArgumentException("Can only compress ECPrivateKey"));
@@ -158,11 +161,11 @@ public class Crypto {
         }
         return false;
     }
-    
+
     public static String randomString(int length) {
         return new BigInteger(length * 5, random).toString(32);
     }
-    
+
     public static byte[] ripemd160(byte[] bytesToHash) throws CryptoException {
         try {
             MessageDigest md = MessageDigest.getInstance("RIPEMD160");
@@ -171,7 +174,7 @@ public class Crypto {
             throw new CryptoException(e);
         }
     }
-    
+
     public static String toString00(byte[] bArr) {
         if (bArr == null)
             return null;
