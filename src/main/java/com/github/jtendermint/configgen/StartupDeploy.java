@@ -8,6 +8,7 @@ import com.github.jtendermint.configgen.items.Genesis;
 import com.github.jtendermint.configgen.items.PrivValidator;
 import com.github.jtendermint.configgen.items.Validator;
 import com.github.jtendermint.configgen.yaml.Config;
+import com.github.jtendermint.configgen.yaml.NetworkTopology;
 import com.github.jtendermint.configgen.yaml.Node;
 
 public class StartupDeploy {
@@ -29,7 +30,7 @@ public class StartupDeploy {
         int i = 0;
         for (Node nodex : cfg.getNodes()) {
             PrivValidator privval = setupPrivValidator(nodex);
-            ConfigToml toml = setupConfigToml(nodex);
+            ConfigToml toml = setupConfigToml(nodex, cfg);
             try {
                 Writer.write(outpath, i, genesis, privval, toml);
             } catch (Exception e) {
@@ -71,9 +72,26 @@ public class StartupDeploy {
         return new PrivValidator(address, privkey, pubkey);
     }
 
-    public static ConfigToml setupConfigToml(Node n) {
+    public static ConfigToml setupConfigToml(Node n, Config cfg) {
         ConfigToml toml = new ConfigToml();
-        toml.initWith(n);
+
+        final String topology = n.isValidator() ? cfg.getNetworktopology().validator : cfg.getNetworktopology().nonvalidator;
+
+        // TODO Implement meshing
+        switch (topology) {
+        case NetworkTopology.VALIDATOR:
+            break;
+        case NetworkTopology.FULL:
+            break;
+        case NetworkTopology.RANDOM_FULL:
+            break;
+        case NetworkTopology.RANDOM_VALIDATOR:
+            break;
+        case NetworkTopology.NONE:
+        default:
+            toml.initWith(n);
+        }
+
         return toml;
     }
 

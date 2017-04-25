@@ -12,9 +12,11 @@ public class Config {
 
     private String chainid;
 
-    DefaultValues defaultvalues;
+    private DefaultValues defaultvalues;
 
-    List<Node> nodes;
+    private List<Node> nodes;
+    
+    private NetworkTopology networktopology;
 
     public static Config loadFile(String filepath) {
         // TypeDescription typeDesc = new TypeDescription(Config.class);
@@ -69,5 +71,12 @@ public class Config {
     public void setChainid(String chainid) {
         this.chainid = chainid;
     }
-
+    
+    public void setNetworktopology(NetworkTopology networktopology) {
+        this.networktopology = networktopology;
+    }
+    
+    public NetworkTopology getNetworktopology() {
+        return networktopology;
+    }
 }

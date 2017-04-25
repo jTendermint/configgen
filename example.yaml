@@ -4,7 +4,6 @@
 chainid: testchain12
 
 
-
 # Default values for all nodes, can be individually overriden
 defaultvalues: &defval
   proxy_app: tcp://127.0.0.1:46658
@@ -36,3 +35,16 @@ nodes:
    extport: 46656
    validator: false
    seeds: [*node1,*node2]
+   
+   
+# Override for Network Topology
+# Allows setting different network meshes
+# Values:
+#    none - specify seeds for every node
+#    validator - every validator
+#    full - every node
+#    random_val - a random selection of validator nodes (atleast 1)
+#    random_full - a random selection of all nodes (atleast 1)
+networktopology:
+  validator: none
+  nonvalidator: none
