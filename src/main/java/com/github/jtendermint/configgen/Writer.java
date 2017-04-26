@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.Map.Entry;
 
 import com.github.jtendermint.configgen.items.ConfigToml;
 import com.github.jtendermint.configgen.items.Genesis;
@@ -53,17 +54,25 @@ public class Writer {
         for (Field f : ConfigToml.class.getDeclaredFields()) {
             String name = f.getName();
             Object value = f.get(toml);
-
-            writer.append(name).append(" = ");
-
-            if (value instanceof String) {
-                value = "\"" + value + "\"";
+            if (!name.equals("other")) {
+                writeKV(writer, name, value);
             }
-            writer.append(value.toString()).append("\n");
+        }
 
+        for (Entry<String, Object> entry : toml.other.entrySet()) {
+            writeKV(writer, entry.getKey(), entry.getValue());
         }
 
         writer.close();
+    }
+
+    private static void writeKV(FileWriter writer, String key, Object value) throws IOException {
+        writer.append(key).append(" = ");
+
+        if (value instanceof String) {
+            value = "\"" + value + "\"";
+        }
+        writer.append(value.toString()).append("\n");
     }
 
 }

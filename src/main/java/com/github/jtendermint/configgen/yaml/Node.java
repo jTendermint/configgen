@@ -3,6 +3,7 @@ package com.github.jtendermint.configgen.yaml;
 import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.github.jtendermint.configgen.crypto.Crypto;
 import com.github.jtendermint.configgen.crypto.CryptoException;
@@ -19,6 +20,8 @@ public class Node extends DefaultValues {
     public byte[] pubkey;
     public byte[] privkey;
     public byte[] address;
+
+    public Map<String, Object> otherValues;
 
     public Node() {
         KeyPair p = null;
@@ -61,6 +64,10 @@ public class Node extends DefaultValues {
 
         if (name == null) {
             name = Crypto.randomString(15);
+        }
+
+        if (otherValues == null) {
+            otherValues = def.getOther();
         }
     }
 

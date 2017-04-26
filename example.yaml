@@ -12,6 +12,8 @@ defaultvalues: &defval
   db_backend : leveldb
   log_level : notice
   rpc_laddr: tcp://0.0.0.0:46657
+  other: # other default values, check ./config/tendermint/config.go#54
+    block_size : 2000
 
   
   

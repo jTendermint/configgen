@@ -1,5 +1,7 @@
 package com.github.jtendermint.configgen.items;
 
+import java.util.Map;
+
 import com.github.jtendermint.configgen.yaml.Node;
 
 //# This is a TOML config file.
@@ -25,6 +27,7 @@ public class ConfigToml {
     public String rpc_laddr = "tcp://0.0.0.0:46657";
 
     public String seeds = ""; // fill later
+    public Map<String, Object> other;
 
     public ConfigToml() {
     }
@@ -38,6 +41,8 @@ public class ConfigToml {
         db_backend = n.db_backend;
         log_level = n.log_level;
         rpc_laddr = n.rpc_laddr;
+        
+        other = n.otherValues;
 
         final StringBuilder toSeed = new StringBuilder();
 

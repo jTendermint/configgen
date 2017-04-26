@@ -1,5 +1,8 @@
 package com.github.jtendermint.configgen.yaml;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class DefaultValues {
     public String proxy_app;// = "tcp://127.0.0.1:46658";
     public String node_laddr;// = "tcp://0.0.0.0:46656";
@@ -7,6 +10,8 @@ public class DefaultValues {
     public String db_backend;// = "leveldb";
     public String log_level;// = "notice";
     public String rpc_laddr;// = "tcp://0.0.0.0:46657";
+
+    private Map<String, Object> other = new HashMap<>();
 
     @Override
     public String toString() {
@@ -60,6 +65,14 @@ public class DefaultValues {
 
     public void setRpc_laddr(String rpc_laddr) {
         this.rpc_laddr = rpc_laddr;
+    }
+
+    public Map<String, Object> getOther() {
+        return other;
+    }
+
+    public void setOther(Map<String, Object> other) {
+        this.other = other;
     }
 
 }
