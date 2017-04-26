@@ -1,6 +1,11 @@
 package com.github.jtendermint.configgen;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
+import java.util.Vector;
+import java.util.stream.Collectors;
 
 import com.github.jtendermint.configgen.crypto.Crypto;
 import com.github.jtendermint.configgen.items.ConfigToml;
@@ -74,25 +79,43 @@ public class StartupDeploy {
 
     public static ConfigToml setupConfigToml(Node n, Config cfg) {
         ConfigToml toml = new ConfigToml();
+        toml.initWith(n);
 
         final String topology = n.isValidator() ? cfg.getNetworktopology().validator : cfg.getNetworktopology().nonvalidator;
 
-        // TODO Implement meshing
         switch (topology) {
-        case NetworkTopology.VALIDATOR:
+        case NetworkTopology.VALIDATOR: {
+            List<Node> validators = cfg.getNodes().stream().filter(t -> t.isValidator()).collect(Collectors.toList());
+            toml.setSeeds(validators);
             break;
-        case NetworkTopology.FULL:
+        }
+        case NetworkTopology.FULL: {
+            toml.setSeeds(cfg.getNodes());
             break;
-        case NetworkTopology.RANDOM_FULL:
+        }
+        case NetworkTopology.RANDOM_FULL: {
+            toml.setSeeds(randomSubset(cfg.getNodes()));
             break;
-        case NetworkTopology.RANDOM_VALIDATOR:
+        }
+        case NetworkTopology.RANDOM_VALIDATOR: {
+            List<Node> validators = cfg.getNodes().stream().filter(t -> t.isValidator()).collect(Collectors.toList());
+            toml.setSeeds(randomSubset(validators));
             break;
+        }
         case NetworkTopology.NONE:
         default:
-            toml.initWith(n);
+            toml.setSeeds(n.getSeeds());
         }
 
         return toml;
+    }
+
+    private static List<Node> randomSubset(List<Node> nodes) {
+        Vector<Node> result = new Vector<>(nodes);
+        Collections.shuffle(result);
+        Random r = new Random();
+        result.setSize(r.nextInt(result.size()));
+        return result;
     }
 
 }

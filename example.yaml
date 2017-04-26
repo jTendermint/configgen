@@ -20,7 +20,7 @@ defaultvalues: &defval
 # list of nodes
 nodes:
  - &node1 
-   name: node1       #optional
+   name: node1       #optional, will be generated if left out
    extip: 127.0.0.1  #required
    extport: 46656    #required
    validator: true   #required
@@ -30,13 +30,13 @@ nodes:
    extip: 127.0.0.2
    extport: 46656
    validator: true
-   seeds: [*node1]   #optional
+   seeds: [*node1]   #optional, see networktopology
  - &node3
    name: node3
    extip: 192.168.0.2
    extport: 46656
    validator: false
-   seeds: [*node1,*node2]
+   seeds: [*node1,*node2]   #optional, see networktopology
    
    
 # Override for Network Topology

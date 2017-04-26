@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.Map.Entry;
 
 import com.github.jtendermint.configgen.items.ConfigToml;
@@ -52,9 +53,10 @@ public class Writer {
         writer.append("# This is a TOML config file.\n# For more information, see https://github.com/toml-lang/toml\n");
 
         for (Field f : ConfigToml.class.getDeclaredFields()) {
+            boolean isTransient = Modifier.isTransient(f.getModifiers());
             String name = f.getName();
             Object value = f.get(toml);
-            if (!name.equals("other")) {
+            if (!isTransient) {
                 writeKV(writer, name, value);
             }
         }
