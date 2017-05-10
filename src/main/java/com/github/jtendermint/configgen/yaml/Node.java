@@ -21,7 +21,7 @@ public class Node extends DefaultValues {
     public byte[] privkey;
     public byte[] address;
 
-    public Map<String, Object> otherValues;
+    public Map<String, Object> other;
 
     public Node() {
         KeyPair p = null;
@@ -66,8 +66,13 @@ public class Node extends DefaultValues {
             name = Crypto.randomString(15);
         }
 
-        if (otherValues == null) {
-            otherValues = def.getOther();
+        if (other == null) {
+            other = def.getOther();
+        } else {
+            def.getOther().forEach((key, value) -> {
+                if (!other.containsKey(key))
+                    other.put(key, value);
+            });
         }
     }
 

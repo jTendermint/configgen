@@ -43,7 +43,7 @@ public class StartupDeploy {
             }
             i++;
         }
-
+        System.out.println("Done.");
     }
 
     public static Genesis setupGenesis(Config cfg) {
@@ -114,7 +114,8 @@ public class StartupDeploy {
         Vector<Node> result = new Vector<>(nodes);
         Collections.shuffle(result);
         Random r = new Random();
-        result.setSize(r.nextInt(result.size()));
+        int size = 1 + r.nextInt(result.size());
+        result.setSize(size);
         return result;
     }
 

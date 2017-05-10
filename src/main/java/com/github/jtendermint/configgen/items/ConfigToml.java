@@ -45,9 +45,7 @@ public class ConfigToml {
         db_backend = n.db_backend;
         log_level = n.log_level;
         rpc_laddr = n.rpc_laddr;
-
-        other = n.otherValues;
-
+        other = n.other;
         self = n;
     }
 

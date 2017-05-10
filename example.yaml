@@ -25,6 +25,8 @@ nodes:
    extport: 46656    #required
    validator: true   #required
    log_level: debug  #individual override of default value
+   other:
+    block_size: 1999 #overrides a default value (blocksize 2000 -> 1999)
  - &node2
    name: node2
    extip: 127.0.0.2
