@@ -1,39 +1,37 @@
 package com.github.jtendermint.configgen.items;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Validator {
 
-    private Integer amount;
-    private String name;
-    
-    @SerializedName("pub_key")
-    private List<Object> pubKey = null;
+	private Integer power;
+	private String name;
 
-    public Integer getAmount() {
-        return amount;
-    }
+	@SerializedName("pub_key")
+	private Key pubKey = null;
 
-    public void setAmount(Integer amount) {
-        this.amount = amount;
-    }
+	public Integer getAmount() {
+		return power;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setAmount(Integer amount) {
+		this.power = amount;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public List<Object> getPubKey() {
-        return pubKey;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPubKey(List<Object> pubKey) {
-        this.pubKey = pubKey;
-    }
+	public Key getPubKey() {
+		return pubKey;
+	}
+
+	public void setPubKey(Key pubKey) {
+		this.pubKey = pubKey;
+	}
 
 }
