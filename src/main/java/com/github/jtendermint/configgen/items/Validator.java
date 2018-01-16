@@ -1,23 +1,21 @@
 package com.github.jtendermint.configgen.items;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Validator {
 
-    private Integer amount;
+    private Integer power;
     private String name;
-    
+
     @SerializedName("pub_key")
-    private List<Object> pubKey = null;
+    private Key pubKey = null;
 
     public Integer getAmount() {
-        return amount;
+        return power;
     }
 
     public void setAmount(Integer amount) {
-        this.amount = amount;
+        this.power = amount;
     }
 
     public String getName() {
@@ -28,11 +26,11 @@ public class Validator {
         this.name = name;
     }
 
-    public List<Object> getPubKey() {
+    public Key getPubKey() {
         return pubKey;
     }
 
-    public void setPubKey(List<Object> pubKey) {
+    public void setPubKey(Key pubKey) {
         this.pubKey = pubKey;
     }
 

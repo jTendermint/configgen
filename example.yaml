@@ -10,8 +10,10 @@ defaultvalues: &defval
   node_laddr: tcp://0.0.0.0:46656
   fast_sync : true
   db_backend : leveldb
-  log_level : notice
+  log_level : state:info,*:error
   rpc_laddr: tcp://0.0.0.0:46657
+  create_empty_blocks : false
+  
   other: # other default values, check ./config/tendermint/config.go#54
     block_size : 2000
 

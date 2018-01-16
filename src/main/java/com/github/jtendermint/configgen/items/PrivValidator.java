@@ -1,8 +1,5 @@
 package com.github.jtendermint.configgen.items;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -28,10 +25,10 @@ public class PrivValidator {
     private Integer lastStep;
     @SerializedName("priv_key")
     @Expose
-    private List<Object> privKey = null;
+    private Key privKey = null;
     @SerializedName("pub_key")
     @Expose
-    private List<Object> pubKey = null;
+    private Key pubKey = null;
 
     public PrivValidator() {
 
@@ -46,13 +43,13 @@ public class PrivValidator {
 
         this.address = address;
 
-        privKey = new ArrayList<>();
-        privKey.add(1);
-        privKey.add(privkey + pubkey);
+        privKey = new Key();
+        privKey.setType("ed25519"); // TODO dynamisch anpassen?
+        privKey.setData(privkey + pubkey);
 
-        pubKey = new ArrayList<>();
-        pubKey.add(1);
-        pubKey.add(pubkey);
+        pubKey = new Key();
+        pubKey.setType("ed25519"); // TODO dynamisch anpassen?
+        pubKey.setData(pubkey);
 
     }
 
@@ -104,19 +101,19 @@ public class PrivValidator {
         this.lastStep = lastStep;
     }
 
-    public List<Object> getPrivKey() {
+    public Key getPrivKey() {
         return privKey;
     }
 
-    public void setPrivKey(List<Object> privKey) {
+    public void setPrivKey(Key privKey) {
         this.privKey = privKey;
     }
 
-    public List<Object> getPubKey() {
+    public Key getPubKey() {
         return pubKey;
     }
 
-    public void setPubKey(List<Object> pubKey) {
+    public void setPubKey(Key pubKey) {
         this.pubKey = pubKey;
     }
 

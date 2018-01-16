@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import com.github.jtendermint.configgen.crypto.Crypto;
 import com.github.jtendermint.configgen.items.ConfigToml;
 import com.github.jtendermint.configgen.items.Genesis;
+import com.github.jtendermint.configgen.items.Key;
 import com.github.jtendermint.configgen.items.PrivValidator;
 import com.github.jtendermint.configgen.items.Validator;
 import com.github.jtendermint.configgen.yaml.Config;
@@ -59,9 +60,9 @@ public class StartupDeploy {
                 Validator val = new Validator();
                 val.setAmount(10);
                 val.setName(node.name);
-                ArrayList<Object> pubKey = new ArrayList<>();
-                pubKey.add(new Integer(1));
-                pubKey.add(Crypto.toString00(node.pubkey));
+                Key pubKey = new Key();
+                pubKey.setType("ed25519"); // TODO Type dynamisch bestimmen? "ed25519" oder "secp256k1"
+                pubKey.setData(Crypto.toString00(node.pubkey));
                 val.setPubKey(pubKey);
                 validators.add(val);
             }
@@ -81,7 +82,8 @@ public class StartupDeploy {
         ConfigToml toml = new ConfigToml();
         toml.initWith(n);
 
-        final String topology = n.isValidator() ? cfg.getNetworktopology().validator : cfg.getNetworktopology().nonvalidator;
+        final String topology = n.isValidator() ? cfg.getNetworktopology().validator
+                : cfg.getNetworktopology().nonvalidator;
 
         switch (topology) {
         case NetworkTopology.VALIDATOR: {

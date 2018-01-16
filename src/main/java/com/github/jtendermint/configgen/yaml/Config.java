@@ -15,7 +15,7 @@ public class Config {
     private DefaultValues defaultvalues;
 
     private List<Node> nodes;
-    
+
     private NetworkTopology networktopology;
 
     public static Config loadFile(String filepath) {
@@ -71,11 +71,11 @@ public class Config {
     public void setChainid(String chainid) {
         this.chainid = chainid;
     }
-    
+
     public void setNetworktopology(NetworkTopology networktopology) {
         this.networktopology = networktopology;
     }
-    
+
     public NetworkTopology getNetworktopology() {
         return networktopology;
     }
