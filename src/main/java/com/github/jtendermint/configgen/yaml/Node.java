@@ -65,6 +65,10 @@ public class Node extends DefaultValues {
         if (name == null) {
             name = Crypto.randomString(15);
         }
+        
+        if (create_empty_blocks == null) {
+        	create_empty_blocks = def.create_empty_blocks;
+        }
 
         if (other == null) {
             other = def.getOther();

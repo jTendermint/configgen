@@ -54,7 +54,9 @@ public class ConfigToml {
 		rpc_laddr = n.rpc_laddr;
 		other = n.other;
 		self = n;
+		create_empty_blocks = n.getCreate_empty_blocks();
 
+		consensus.replace("create_empty_blocks", create_empty_blocks);
 		rpc.replace("laddr", rpc_laddr);
 		p2p.replace("laddr", node_laddr);
 	}

@@ -10,6 +10,7 @@ public class DefaultValues {
     public String db_backend;// = "leveldb";
     public String log_level;// = "notice";
     public String rpc_laddr;// = "tcp://0.0.0.0:46657";
+    public Boolean create_empty_blocks; //false
 
     private Map<String, Object> other = new HashMap<>();
 
@@ -69,6 +70,14 @@ public class DefaultValues {
 
     public Map<String, Object> getOther() {
         return other;
+    }
+    
+    public void setCreate_empty_blocks(Boolean create_empty_blocks) {
+    	this.create_empty_blocks = create_empty_blocks;
+    }
+    
+    public Boolean getCreate_empty_blocks() {
+    	return create_empty_blocks;
     }
 
     public void setOther(Map<String, Object> other) {
