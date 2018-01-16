@@ -45,7 +45,8 @@ public class Crypto {
     public static KeyPair generateKeys() throws CryptoException {
         try {
             X9ECParameters ecP = CustomNamedCurves.getByName(CURVE_NAME);
-            ECParameterSpec ecSpec = new ECParameterSpec(ecP.getCurve(), ecP.getG(), ecP.getN(), ecP.getH(), ecP.getSeed());
+            ECParameterSpec ecSpec = new ECParameterSpec(ecP.getCurve(), ecP.getG(), ecP.getN(), ecP.getH(),
+                    ecP.getSeed());
 
             KeyPairGenerator keygen = KeyPairGenerator.getInstance(ECDSA, PROVIDER);
             keygen.initialize(ecSpec, new SecureRandom());
@@ -85,7 +86,7 @@ public class Crypto {
     }
 
     public static byte[] compressedKey(PrivateKey privkey) throws CryptoException {
-      if (privkey instanceof ECPrivateKey) {
+        if (privkey instanceof ECPrivateKey) {
             return ((ECPrivateKey) privkey).getD().toByteArray();
         }
         throw new CryptoException(new IllegalArgumentException("Can only compress ECPrivateKey"));

@@ -61,8 +61,8 @@ public class StartupDeploy {
                 val.setAmount(10);
                 val.setName(node.name);
                 Key pubKey = new Key();
-                pubKey.setType("ed25519"); //TODO Type dynamisch bestimmen? "ed25519" oder "secp256k1"
-                pubKey.setData(Crypto.toString00(node.pubkey)); 
+                pubKey.setType("ed25519"); // TODO Type dynamisch bestimmen? "ed25519" oder "secp256k1"
+                pubKey.setData(Crypto.toString00(node.pubkey));
                 val.setPubKey(pubKey);
                 validators.add(val);
             }
@@ -82,7 +82,8 @@ public class StartupDeploy {
         ConfigToml toml = new ConfigToml();
         toml.initWith(n);
 
-        final String topology = n.isValidator() ? cfg.getNetworktopology().validator : cfg.getNetworktopology().nonvalidator;
+        final String topology = n.isValidator() ? cfg.getNetworktopology().validator
+                : cfg.getNetworktopology().nonvalidator;
 
         switch (topology) {
         case NetworkTopology.VALIDATOR: {

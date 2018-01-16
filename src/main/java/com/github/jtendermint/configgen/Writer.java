@@ -46,12 +46,14 @@ public class Writer {
 
     }
 
-    private static void writeTOML(File parent, ConfigToml toml) throws IOException, IllegalArgumentException, IllegalAccessException {
+    private static void writeTOML(File parent, ConfigToml toml)
+            throws IOException, IllegalArgumentException, IllegalAccessException {
 
         File outfile = new File(parent, CONFIG);
         FileWriter writer = new FileWriter(outfile);
 
-        writer.append("# This is a TOML config file.\n# For more information, see https://github.com/toml-lang/toml\n\n");
+        writer.append(
+                "# This is a TOML config file.\n# For more information, see https://github.com/toml-lang/toml\n\n");
 
         for (Field f : ConfigToml.class.getDeclaredFields()) {
             boolean isTransient = Modifier.isTransient(f.getModifiers());
@@ -60,8 +62,8 @@ public class Writer {
             Object value = f.get(toml);
             if (!isTransient & !isMap) {
                 writeKV(writer, name, value);
-            } else if(!isTransient & isMap) {
-            	writeMap(writer, name, value);
+            } else if (!isTransient & isMap) {
+                writeMap(writer, name, value);
             }
         }
 
@@ -80,22 +82,22 @@ public class Writer {
         }
         writer.append(value.toString()).append("\n");
     }
-    
+
     private static void writeMap(FileWriter writer, String name, Object value) throws IOException {
-    	writer.append("\n["+name+"]\n");
-    	if(value instanceof Map<?,?>) {
-    		Map<Object, Object> map = (Map<Object, Object>) value;
-    		for (Entry<Object, Object> entry : map.entrySet()) {
-    			Object entryName = entry.getKey();
-    			Object entryValue = entry.getValue();
-    			
-    			if (entryValue instanceof String) {
-    				entryValue = "\"" + entryValue + "\"";
-    	        }
-    			writer.append(entryName.toString()).append(" = ").append(entryValue.toString()).append("\n");
-    		}
-    		writer.append("\n");
-    	}
+        writer.append("\n[" + name + "]\n");
+        if (value instanceof Map<?, ?>) {
+            Map<Object, Object> map = (Map<Object, Object>) value;
+            for (Entry<Object, Object> entry : map.entrySet()) {
+                Object entryName = entry.getKey();
+                Object entryValue = entry.getValue();
+
+                if (entryValue instanceof String) {
+                    entryValue = "\"" + entryValue + "\"";
+                }
+                writer.append(entryName.toString()).append(" = ").append(entryValue.toString()).append("\n");
+            }
+            writer.append("\n");
+        }
     }
 
 }

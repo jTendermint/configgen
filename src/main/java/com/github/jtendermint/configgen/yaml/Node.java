@@ -65,9 +65,9 @@ public class Node extends DefaultValues {
         if (name == null) {
             name = Crypto.randomString(15);
         }
-        
+
         if (create_empty_blocks == null) {
-        	create_empty_blocks = def.create_empty_blocks;
+            create_empty_blocks = def.create_empty_blocks;
         }
 
         if (other == null) {
@@ -82,9 +82,9 @@ public class Node extends DefaultValues {
 
     @Override
     public String toString() {
-        return "Node [extaddr=" + extip + ":" + extport + ", validator=" + validator + ", seeds=" + seeds + ", proxy_app=" + proxy_app
-                + ", node_laddr=" + node_laddr + ", fast_sync=" + fast_sync + ", db_backend=" + db_backend + ", log_level=" + log_level
-                + ", rpc_laddr=" + rpc_laddr + "]";
+        return "Node [extaddr=" + extip + ":" + extport + ", validator=" + validator + ", seeds=" + seeds
+                + ", proxy_app=" + proxy_app + ", node_laddr=" + node_laddr + ", fast_sync=" + fast_sync
+                + ", db_backend=" + db_backend + ", log_level=" + log_level + ", rpc_laddr=" + rpc_laddr + "]";
     }
 
     public String getExtip() {

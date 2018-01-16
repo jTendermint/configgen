@@ -10,14 +10,14 @@ public class DefaultValues {
     public String db_backend;// = "leveldb";
     public String log_level;// = "notice";
     public String rpc_laddr;// = "tcp://0.0.0.0:46657";
-    public Boolean create_empty_blocks; //false
+    public Boolean create_empty_blocks; // false
 
     private Map<String, Object> other = new HashMap<>();
 
     @Override
     public String toString() {
-        return "DefaultValues [proxy_app=" + proxy_app + ", node_laddr=" + node_laddr + ", fast_sync=" + fast_sync + ", db_backend="
-                + db_backend + ", log_level=" + log_level + ", rpc_laddr=" + rpc_laddr + "]";
+        return "DefaultValues [proxy_app=" + proxy_app + ", node_laddr=" + node_laddr + ", fast_sync=" + fast_sync
+                + ", db_backend=" + db_backend + ", log_level=" + log_level + ", rpc_laddr=" + rpc_laddr + "]";
     }
 
     public String getProxy_app() {
@@ -71,13 +71,13 @@ public class DefaultValues {
     public Map<String, Object> getOther() {
         return other;
     }
-    
+
     public void setCreate_empty_blocks(Boolean create_empty_blocks) {
-    	this.create_empty_blocks = create_empty_blocks;
+        this.create_empty_blocks = create_empty_blocks;
     }
-    
+
     public Boolean getCreate_empty_blocks() {
-    	return create_empty_blocks;
+        return create_empty_blocks;
     }
 
     public void setOther(Map<String, Object> other) {
